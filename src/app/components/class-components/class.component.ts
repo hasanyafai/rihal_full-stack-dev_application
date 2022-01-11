@@ -25,7 +25,7 @@ export class ClassCreateComponent {
         this._bottomSheet.open(ClassSheetComponent, {
           data: {
             className: 'new class',
-            classId: last.id + 1,
+            classId: last ? last.id + 1 : 0,
             isCreateMode: true,
           },
         });
