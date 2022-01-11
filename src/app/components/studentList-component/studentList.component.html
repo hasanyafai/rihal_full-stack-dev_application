@@ -1,0 +1,80 @@
+<!--
+
+    Rendering student list$
+
+-->
+
+<div>
+  <table style="width: 100%">
+    <tr>
+      <th>Student Name</th>
+      <th>Date of Birth</th>
+      <th>Country</th>
+      <th></th>
+    </tr>
+
+    <tr *ngFor="let student of students$ | async">
+      <td>{{ student.name }}</td>
+      <td>{{ student.date_of_birth | date: "yyyy-MM-dd" }}</td>
+      <td>{{ countryList[student.country_id].name }}</td>
+      <td><button (click)="onDeleteStudent(student.id)">Delete</button></td>
+    </tr>
+  </table>
+</div>
+
+<hr />
+
+<!--
+    Adding item form
+-->
+<div class="parent">
+  <div class="child">
+    <mat-form-field style="margin: 1rem">
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="studentName"
+        placeholder="student name"
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="child">
+    <mat-form-field style="margin: 1rem">
+      <input
+        matInput
+        [matDatepicker]="pickerDOB"
+        placeholder="Date of birth"
+        [(ngModel)]="dateOfBirth"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="pickerDOB"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #pickerDOB></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="child">
+    <mat-form-field appearance="fill" style="margin: 1rem">
+      <mat-label>Country</mat-label>
+      <mat-select id="countryId" #country [(ngModel)]="countryId">
+        <mat-option *ngFor="let country of countryList" [value]="country.id">
+          {{ country.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <button
+      style="width: 100%"
+      mat-raised-button
+      color="accent"
+      type="submit"
+      (click)="onAddStudent()"
+    >
+      Add Student
+    </button>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="spacer">
+  <h2>Create Class</h2>
+  <div>
+    <mat-form-field style="width: 100%">
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="currentName"
+        placeholder="Class name"
+      />
+    </mat-form-field>
+  </div>
+
+  <div>
+    <button
+      style="width: 100%"
+      mat-raised-button
+      color="accent"
+      (click)="onCreateClass()"
+      type="submit"
+    >
+      Save Class
+    </button>
+  </div>
+</div>

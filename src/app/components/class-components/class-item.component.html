@@ -1,0 +1,59 @@
+<mat-spinner
+  style="margin: auto; padding: auto"
+  *ngIf="classList_isLoading"
+></mat-spinner>
+<div *ngIf="!classList_isLoading">
+  <div *ngFor="let classes of classList">
+    <mat-accordion style="margin: auto">
+      <mat-expansion-panel
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title style="margin: auto; width: 30%">
+            <div
+              style="text-align: left; font-size: smaller; font-weight: bold"
+            >
+              {{ classes.class_name }}
+            </div>
+          </mat-panel-title>
+          <mat-panel-description style="margin: auto">
+            <div style="font-size: smaller; text-align: left">
+              No. of Students:
+              {{
+                student_class_counter[classes.id]
+                  ? student_class_counter[classes.id].length
+                  : "0"
+              }}
+            </div>
+            <div style="margin: auto">
+              <button
+                class="btn-style"
+                mat-flat-button
+                color="accent"
+                (click)="onEditClassBtn(classes.id)"
+              >
+                Edit
+              </button>
+              <button
+                class="btn-style"
+                mat-flat-button
+                color="warn"
+                (click)="onDeleteClass(classes.id)"
+              >
+                Delete
+              </button>
+            </div>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div>
+          <student-list
+            [classes]="classes"
+            [countryList]="countryList"
+          ></student-list>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

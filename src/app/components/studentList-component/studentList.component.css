@@ -1,0 +1,25 @@
+table, th, td {
+
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+
+.parent {
+  padding: 0.5rem 0.5rem;
+  text-align: center;
+  background-color:lightyellow;
+}
+.child {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+table, th, td {
+
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}
