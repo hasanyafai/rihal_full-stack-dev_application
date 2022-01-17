@@ -21,9 +21,9 @@
             <div style="font-size: smaller; text-align: left">
               No. of Students:
               {{
-                student_class_counter[classes.id]
-                  ? student_class_counter[classes.id].length
-                  : "0"
+                student_class_counter[classes.id] ?
+                student_class_counter[classes.id] :
+                0
               }}
             </div>
             <div style="margin: auto">

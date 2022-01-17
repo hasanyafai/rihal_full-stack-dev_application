@@ -25,7 +25,7 @@ export class ClassCreateComponent {
         this._bottomSheet.open(ClassSheetComponent, {
           data: {
             className: 'new class',
-            classId: last ? last.id + 1 : 0,
+            classId: (last.id >= 0) ? last.id + 1 : 0,
             isCreateMode: true,
           },
         });
@@ -45,8 +45,8 @@ export class ClassItemComponent {
 
   @Input() classList: Classes[];
   @Input() countryList: Countries[];
-  @Input() student_country_counter: Student[][] = [];
-  @Input() student_class_counter: Student[][] = [];
+  @Input() student_country_counter: Student[][];
+  @Input() student_class_counter: Student[][];
   @Input() classList_isLoading: boolean;
 
   panelOpenState = false;
@@ -64,6 +64,8 @@ export class ClassItemComponent {
           list.forEach((item) => {
             db.students.delete(item.id);
           });
+          console.log(this.classList);
+
         });
       this.classList_isLoading = false;
     });

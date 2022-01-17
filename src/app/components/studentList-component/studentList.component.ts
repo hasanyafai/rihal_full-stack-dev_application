@@ -23,6 +23,8 @@ export class StudentListComponent {
   );
 
   async onAddStudent() {
+    console.log(this.classes.id);
+
     await db.students
       .add({
         name: this.studentName,

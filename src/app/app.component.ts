@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   }
 
   student_country_counter: Student[][] = [];
-  student_class_counter: Student[][] = [];
+  student_class_counter: number[] = [];
 
   countryList$ = liveQuery(() => db.countries.toArray());
   classList$ = liveQuery(() => db.classes.toArray());
@@ -59,15 +59,17 @@ export class AppComponent implements OnInit {
 
   classCounting$ = liveQuery(() =>
     db.classes.toArray().then((list) => {
-      for (let i = 0; i <= list.length - 1; i++) {
+      list.forEach(item => {
         liveQuery(() =>
           db.students
             .where({
-              class_id: list[i].id,
+              class_id: item.id,
             })
             .toArray()
-        ).subscribe((list) => (this.student_class_counter[i] = list));
-      }
+        ).subscribe((list) => {(this.student_class_counter[item.id] = list.length)
+        console.log(this.student_class_counter[0]);
+        });
+      });
       this.classList_isLoading = false;
     })
   );
